@@ -1423,6 +1423,8 @@ class LenSlider {
             foreach($sliders_array[$slidernum] as $k=>$v) {
                 if($this->lenslider_delete_banner($k, $slidernum, true, $v['thumb_id'], false, $sliders_array, false, true)) continue;
             }
+        }
+        if(array_key_exists($slidernum, $sliders_array)) {
             unset($sliders_array[$slidernum]);
             $this->_lenslider_update_option_sliders_array($sliders_array);
         }
