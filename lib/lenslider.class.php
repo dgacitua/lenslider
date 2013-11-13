@@ -579,10 +579,12 @@ class LenSlider {
                     if(!empty($enabled_skins_data['settings']) && is_array($enabled_skins_data['settings'])) {
                         $sliders_skins_array = $this->lenslider_get_sliders_skins_names();
                         foreach ($enabled_skins_data['settings'] as $slidernum => $sett_arr) {
-                            $tmp_settings = $this->_lenslider_make_grouped_slider_settings_array($sett_arr);
-                            unset($tmp_settings['general']);
-                            if(!empty($tmp_settings) && is_array($tmp_settings)) {
-                                if(array_key_exists($slidernum, $sliders_skins_array)) $this->_footer_scripts .= "{$skin_name}_lenslider_fn(".json_encode($tmp_settings).");";
+                            if($sett_arr['ls_slider_skin'] == $skin_name) {
+                                $tmp_settings = $this->_lenslider_make_grouped_slider_settings_array($sett_arr);
+                                unset($tmp_settings['general']);
+                                if(!empty($tmp_settings) && is_array($tmp_settings)) {
+                                    if(array_key_exists($slidernum, $sliders_skins_array)) $this->_footer_scripts .= "{$skin_name}_lenslider_fn(".json_encode($tmp_settings).");";
+                                }
                             }
                         }
                     }
@@ -1187,6 +1189,7 @@ class LenSlider {
                 $ret_array['skins'][] = $tmp_set[self::$skinName];
             }
         }
+        $ret_array['skins'] = array_unique($ret_array['skinks']);
         return $ret_array;
     }
     
