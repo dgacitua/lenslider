@@ -932,8 +932,7 @@ class LenSlider {
     
     public static function lenslider_is_slider_exists($slidernum, $sliders_array = false) {
         $sliders_array = (!$sliders_array)?self::lenslider_get_array_from_wp_options(self::$bannersOption):$sliders_array;
-        return (!empty($sliders_array) && is_array($sliders_array) && !empty($sliders_array[$slidernum]))?true:false;
-        return false;
+        return !empty($sliders_array) && is_array($sliders_array) && array_key_exists($slidernum, $sliders_array);
     }
 
     public static function lenslider_is_enabled_slider($slidernum) {
