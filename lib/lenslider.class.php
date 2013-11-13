@@ -945,7 +945,8 @@ class LenSlider {
     }
     
     protected function _lenslider_is_plugin_page() {
-        $server_uri = 'http' . ($_SERVER['HTTPS'] ? 's' : '') . '://' . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
+        $https = isset($_SERVER['HTTPS']) ? $_SERVER['HTTPS'] : false;
+        $server_uri = 'http' . ($https ? 's' : '') . '://' . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
         foreach ($this->_allowURIs as $allowURI) {
             if(stristr($server_uri, $allowURI)) return true;
         }
