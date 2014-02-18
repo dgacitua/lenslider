@@ -579,10 +579,12 @@ class LenSlider {
                     if(!empty($enabled_skins_data['settings']) && is_array($enabled_skins_data['settings'])) {
                         $sliders_skins_array = $this->lenslider_get_sliders_skins_names();
                         foreach ($enabled_skins_data['settings'] as $slidernum => $sett_arr) {
-                            $tmp_settings = $this->_lenslider_make_grouped_slider_settings_array($sett_arr);
-                            unset($tmp_settings['general']);
-                            if(!empty($tmp_settings) && is_array($tmp_settings)) {
-                                if(array_key_exists($slidernum, $sliders_skins_array)) $this->_footer_scripts .= "{$skin_name}_lenslider_fn(".json_encode($tmp_settings).");";
+                            if($sett_arr['ls_slider_skin'] == $skin_name) {
+                                $tmp_settings = $this->_lenslider_make_grouped_slider_settings_array($sett_arr);
+                                unset($tmp_settings['general']);
+                                if(!empty($tmp_settings) && is_array($tmp_settings)) {
+                                    if(array_key_exists($slidernum, $sliders_skins_array)) $this->_footer_scripts .= "{$skin_name}_lenslider_fn(".json_encode($tmp_settings).");";
+                                }
                             }
                         }
                     }
@@ -930,8 +932,7 @@ class LenSlider {
     
     public static function lenslider_is_slider_exists($slidernum, $sliders_array = false) {
         $sliders_array = (!$sliders_array)?self::lenslider_get_array_from_wp_options(self::$bannersOption):$sliders_array;
-        return (!empty($sliders_array) && is_array($sliders_array) && !empty($sliders_array[$slidernum]))?true:false;
-        return false;
+        return !empty($sliders_array) && is_array($sliders_array) && array_key_exists($slidernum, $sliders_array);
     }
 
     public static function lenslider_is_enabled_slider($slidernum) {
@@ -943,7 +944,8 @@ class LenSlider {
     }
     
     protected function _lenslider_is_plugin_page() {
-        $server_uri = "http://{$_SERVER['HTTP_HOST']}{$_SERVER['REQUEST_URI']}";
+        $https = isset($_SERVER['HTTPS']) ? $_SERVER['HTTPS'] : false;
+        $server_uri = 'http' . ($https ? 's' : '') . '://' . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
         foreach ($this->_allowURIs as $allowURI) {
             if(stristr($server_uri, $allowURI)) return true;
         }
@@ -1187,6 +1189,7 @@ class LenSlider {
                 $ret_array['skins'][] = $tmp_set[self::$skinName];
             }
         }
+        $ret_array['skins'] = array_unique($ret_array['skinks']);
         return $ret_array;
     }
     
@@ -1420,6 +1423,8 @@ class LenSlider {
             foreach($sliders_array[$slidernum] as $k=>$v) {
                 if($this->lenslider_delete_banner($k, $slidernum, true, $v['thumb_id'], false, $sliders_array, false, true)) continue;
             }
+        }
+        if(array_key_exists($slidernum, $sliders_array)) {
             unset($sliders_array[$slidernum]);
             $this->_lenslider_update_option_sliders_array($sliders_array);
         }
