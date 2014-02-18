@@ -1,3 +1,7 @@
+=== Len Slider FIX NOTES ===
+This is an attempt by Daniel "GaciX" Gacitua to fix Len Slider for newer versions of PHP and WordPress.
+Any questions about this fork must be adressed to <gacix@riseup.net>
+
 === Len Slider ===
 Contributors: tigusigalpa
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=AYEX4C4M5YMWL&lc=US&item_name=LenSlider%20Wordpress%20Plugin&amount=3%2e00&currency_code=USD&currency_code=USD&bn=PP%2dDonationsBF%3abtn_donateCC_LG%2egif%3aNonHosted
