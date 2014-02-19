@@ -1189,7 +1189,7 @@ class LenSlider {
                 $ret_array['skins'][] = $tmp_set[self::$skinName];
             }
         }
-        $ret_array['skins'] = array_unique($ret_array['skinks']);
+        $ret_array['skins'] = array_unique($ret_array['skins']);
         return $ret_array;
     }
     
