@@ -41,7 +41,9 @@ class LenSliderSkins extends LenSlider {
         if($skin_name != LenSlider::$defaultSkin) {
             if(!$path_to_skins_folder) $path_to_skins_folder = self::_lenslider_skins_abspath();
             if(!$path_to_custom_skins_folder) $path_to_custom_skins_folder = self::_lenslider_skins_custom_abspath();
-            if(file_exists(strtolower("{$path_to_skins_folder}/{$skin_name}/".self::$settings_file)) || file_exists(strtolower("{$path_to_custom_skins_folder}/{$skin_name}/".self::$settings_file))) return true;
+            # GaciX - FIX: Skins are not displayed http://is.gd/oVM6YN
+            # if(file_exists(strtolower("{$path_to_skins_folder}/{$skin_name}/".self::$settings_file)) || file_exists(strtolower("{$path_to_custom_skins_folder}/{$skin_name}/".self::$settings_file))) return true;
+            if(file_exists($path_to_skins_folder.strtolower("/{$skin_name}/".self::$settings_file)) || file_exists($path_to_custom_skins_folder.strtolower("/{$skin_name}/".self::$settings_file))) return true;
             return false;
         } else return true;
     }
@@ -50,7 +52,9 @@ class LenSliderSkins extends LenSlider {
         if($skin_name == parent::$defaultSkin) return true;
         if(!$path_to_skins_folder) $path_to_skins_folder = self::_lenslider_skins_abspath();
         if(!$path_to_custom_skins_folder) $path_to_custom_skins_folder = self::_lenslider_skins_custom_abspath();
-        if(file_exists(strtolower("{$path_to_skins_folder}/{$skin_name}")) || file_exists(strtolower("{$path_to_custom_skins_folder}/{$skin_name}"))) return true;
+        # GaciX - FIX: Skins are not displayed http://is.gd/oVM6YN
+        # if(file_exists(strtolower("{$path_to_skins_folder}/{$skin_name}")) || file_exists(strtolower("{$path_to_custom_skins_folder}/{$skin_name}"))) return true;
+        if(file_exists($path_to_skins_folder.strtolower("/{$skin_name}/".self::$settings_file)) || file_exists($path_to_custom_skins_folder.strtolower("/{$skin_name}/".self::$settings_file))) return true;
         return false;
     }
 
