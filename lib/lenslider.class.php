@@ -1189,6 +1189,7 @@ class LenSlider {
                 $ret_array['skins'][] = $tmp_set[self::$skinName];
             }
         }
+        # GaciX - Fixed typo
         $ret_array['skins'] = array_unique($ret_array['skins']);
         return $ret_array;
     }
@@ -1812,7 +1813,9 @@ class LenSlider {
                 if(!file_exists($upload_dir_array['path'])) mkdir($upload_dir_array['path'], 0777);
                 $needle_title = (!empty($needle_title) && $this->lenslider_is_english_characters($needle_title))?$needle_title:self::lenslider_hash();
                 $newpath = $upload_dir_array['path'].'/'.strtolower(sanitize_title($needle_title." ".self::lenslider_hash()).'.'.$obj->ext);
-                @copy($obj->httpPath, $newpath);
+                # GaciX - FIX: http://is.gd/Q4ogVl
+                # @copy($obj->httpPath, $newpath);
+                @copy($obj->absAttUrl, $newpath);
                 switch ($prior) {
                     case 'width':
                         if(!empty($needle_width) && $needle_width < $obj->width) {
