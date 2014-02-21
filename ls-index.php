@@ -2,7 +2,7 @@
 /*
 Plugin Name: LenSlider FV
 Plugin URI: http://www.lenslider.com/
-Description: This plugin allows you easy to generate multiple visual sliders as well as easy to integrate them into any place of your site via slider php-code or shortcode (plugin timyMCE button). A lot of plugin slider skins will help you to visualize your slider. NOTE: This is a fixed version of the LenSlider plugin (tested up to WP 3.8.1 and PHP 5.5), send feedback of this fork/hack to Daniel Gacitua <gacix@riseup.net>.
+Description: This plugin allows you easy to generate multiple visual sliders as well as easy to integrate them into any place of your site via slider php-code or shortcode (plugin timyMCE button). A lot of plugin slider skins will help you to visualize your slider. <strong>NOTE:</strong> This is a fixed version of the LenSlider plugin (tested up to WP 3.8.1 and PHP 5.5), send feedback of this fork/hack to Daniel Gacitua at gacix[at]riseup[dot]net.
 Author: Igor Sazonov
 Version: 2.0.11
 Author URI: http://www.lenslider.com/about-author/
